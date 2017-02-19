@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <title>LARA VUE</title>
+
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.3.1/css/bulma.css">
+   <style>
+      .is-loading {
+         background: #116696;
+      }
+   </style>
+
+</head>
+<body>
+
+   <div id="app">
+      <input type="text" v-model="message">
+      <p>2 Way Data Binding {{message}} </p>
+   </div>
+   <hr>
+   <div id="app2">
+      <ul>
+         <li v-for="name in names" v-text="name"></li>
+      </ul>
+
+      <input type="text" id="input" v-model="newName" v-on:keyup.enter="addName">
+      <button v-on:click="addName">Add Name</button>
+   </div>
+   <hr>
+   <div id="app3">
+      <button :class="{ 'is-loading' : isLoading }" @click="toggleClass">Toggle</button>
+   </div>
+   <hr>
+   <div id="app4">
+      <h2 class="subtitle">All Tasks</h2>
+      <ul>
+         <li v-for="task in tasks" v-text="task.description"></li>
+      </ul><br>
+
+      <h2 class="subtitle">Incomplete Tasks</h2>
+      <ul>
+         <li v-for="task in incompleteTasks" v-text="task.description"></li>
+      </ul><br>
+
+      <h2 class="subtitle">Complete Tasks</h2>
+      <ul>
+         <li v-for="task in completedTasks" v-text="task.description"></li>
+      </ul><br>
+   </div>
+   <hr>
+
+   <div id="app5" class="container">
+      <message title="Cobacoba" body="asldkjalskjdalskdj"></message>
+      <message title="coba2" body="qrqeqweqweqweqwee"></message>
+   </div>
+   <hr>
+
+   <div id="app6" class="container">
+      <modal v-if="showModal" @close="showModal = false">
+         Insert text here
+      </modal>
+      <button @click="showModal = true">Show modal</button>
+   </div>
+   <hr>
+
+   <div id="app7" class="container">
+      <tabs>
+         <tab name="About Us" :selected="true">
+            <h1>About Us Tab</h1>
+         </tab>
+
+         <tab name="Contact Us">
+            <h1>Contact Us Tab</h1>
+         </tab>
+
+         <tab name="Other tab">
+            <h1>Other Tab</h1>
+         </tab>
+      </tabs>
+   </div>
+   <hr>
+
+   <div id="app8" class="container">
+      <coupon @applied="onCouponApplied"></coupon>
+      <h1 v-if="couponApplied">You used the Coupon!</h1>
+   </div>
+   <hr>
+
+   <div id="app9" class="container">
+      <button class="button" @click="showModal=true">Show Modal-Card </button>
+      <modal-card v-if="showModal" @close="showModal=false">
+         <template slot="header">App Number #9</template>
+
+         App Number 9 content yoo <br>
+         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+
+         <template slot="footer">
+            <a class="button is-success">Save changes</a>
+            <a class="button" @click="showModal=false">Cancel</a>
+         </template>
+      </modal-card>
+   </div>
+   <hr>
+
+   <div id="app10" class="container">
+      <inline-templating inline-template>
+         <p>
+            Something you need to know ==> {{ plus }} <br>
+            <button class="button" @click="plus += 10">Plus!</button>
+         </p>
+      </inline-templating>
+   </div>
+   <hr>
+
+
+
+   <script src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+   <script src="component.js"></script>
+   <script src="app.js"></script>
+</body>
+</html>
